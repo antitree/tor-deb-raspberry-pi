@@ -1,0 +1,15 @@
+Package: tor-dbg
+Source: tor
+Version: 0.2.4.22-1~d70.wheezy+1
+Architecture: armhf
+Maintainer: Peter Palfrader <weasel@debian.org>
+Installed-Size: 3947
+Depends: tor (= 0.2.4.22-1~d70.wheezy+1)
+Suggests: gdb
+Section: debug
+Priority: extra
+Homepage: https://www.torproject.org/
+Description: debugging symbols for Tor
+ This package provides the debugging symbols for Tor, The Onion Router.
+ Those symbols allow your debugger to assign names to your backtraces, which
+ makes it somewhat easier to interpret core dumps.

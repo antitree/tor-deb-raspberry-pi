@@ -1,0 +1,43 @@
+Package: tor
+Version: 0.2.4.22-1~d70.wheezy+1
+Architecture: armhf
+Maintainer: Peter Palfrader <weasel@debian.org>
+Installed-Size: 2683
+Pre-Depends: dpkg (>= 1.15.7.2)
+Depends: libc6 (>= 2.13-28), libevent-2.0-5 (>= 2.0.10-stable), libgcc1 (>= 1:4.4.0), libssl1.0.0 (>= 1.0.0), zlib1g (>= 1:1.1.4), adduser, lsb-base
+Recommends: logrotate, tor-geoipdb, torsocks
+Suggests: mixmaster, xul-ext-torbutton, socat, tor-arm, polipo (>= 1) | privoxy, apparmor-utils
+Conflicts: libssl0.9.8 (<< 0.9.8g-9)
+Section: net
+Priority: optional
+Homepage: https://www.torproject.org/
+Description: anonymizing overlay network for TCP
+ Tor is a connection-based low-latency anonymous communication system.
+ .
+ Clients choose a source-routed path through a set of relays, and
+ negotiate a "virtual circuit" through the network, in which each relay
+ knows its predecessor and successor, but no others. Traffic flowing
+ down the circuit is decrypted at each relay, which reveals the
+ downstream relay.
+ .
+ Basically, Tor provides a distributed network of relays. Users bounce
+ their TCP streams (web traffic, ftp, ssh, etc) around the relays, and
+ recipients, observers, and even the relays themselves have difficulty
+ learning which users connected to which destinations.
+ .
+ This package enables only a Tor client by default, but it can also be
+ configured as a relay and/or a hidden service easily.
+ .
+ Client applications can use the Tor network by connecting to the local
+ socks proxy interface provided by your Tor instance. If the application
+ itself does not come with socks support, you can use a socks client
+ such as torsocks.
+ .
+ Note that Tor does no protocol cleaning on application traffic. There
+ is a danger that application protocols and associated programs can be
+ induced to reveal information about the user. Tor depends on Torbutton
+ and similar protocol cleaners to solve this problem. For best
+ protection when web surfing, the Tor Project recommends that you use
+ the Tor Browser Bundle, a standalone tarball that includes static
+ builds of Tor, Torbutton, and a modified Firefox that is patched to fix
+ a variety of privacy bugs.

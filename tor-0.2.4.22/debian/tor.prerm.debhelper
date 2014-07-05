@@ -1,0 +1,8 @@
+# Automatically added by dh_installdeb
+dpkg-maintscript-helper rm_conffile /etc/tor/tor-tsocks.conf 0.2.4.12-alpha-1 tor -- "$@"
+# End automatically added section
+# Automatically added by dh_installinit
+if [ -x "/etc/init.d/tor" ]; then
+	invoke-rc.d tor stop || tor_error_init
+fi
+# End automatically added section

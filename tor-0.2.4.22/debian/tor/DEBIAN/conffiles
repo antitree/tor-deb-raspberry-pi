@@ -1,0 +1,7 @@
+/etc/cron.weekly/tor
+/etc/logrotate.d/tor
+/etc/default/tor
+/etc/apparmor.d/system_tor
+/etc/apparmor.d/abstractions/tor
+/etc/tor/torrc
+/etc/init.d/tor
