@@ -1,7 +1,14 @@
-tor-build-arm
+tor-raspberry-pi
 =============
 
-This is a repo for Tor build for the arm architecture. It's designed to run on raspberry pi's or any arm chips. This is a more up-to-date version of Tor compared to the ones used by Debian
+This is a repo for Tor .deb packages built for the arm architecture and specifically for the Raspberry Pi. This is a more up-to-date version of Tor compared to the ones used by Debian and Raspbian. 
+
+## Installation
+ * Download the latest .deb under releases
+ * on the pi as root run
+ dpkg -i tor-{whateverversion}.deb
+ * If you receive an error stating that libevent is not installed, you can automatically install it by running
+ apt-get install -f
 
 ## Why? ##
  * Debian(and Raspbian) repos are notoriously out of date
