@@ -375,8 +375,8 @@ configure:5938: $? = 0
 configure:5955: result: none required
 configure:5963: checking for library containing dlopen
 configure:5994: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c  >&5
-/tmp/cclgPzKb.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:35: undefined reference to `dlopen'
+/tmp/ccTKHuyn.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:35: undefined reference to `dlopen'
 collect2: ld returned 1 exit status
 configure:5994: $? = 1
 configure: failed program was:
@@ -427,8 +427,8 @@ configure:6050: $? = 0
 configure:6067: result: none required
 configure:6076: checking for library containing clock_gettime
 configure:6107: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -ldl  >&5
-/tmp/cc2y4amp.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:35: undefined reference to `clock_gettime'
+/tmp/cc5oc6Xm.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:35: undefined reference to `clock_gettime'
 collect2: ld returned 1 exit status
 configure:6107: $? = 1
 configure: failed program was:
@@ -483,8 +483,8 @@ configure:6225: $? = 0
 configure:6242: result: none required
 configure:6285: checking for _NSGetEnviron
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
-/tmp/ccmoIWrH.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:58: undefined reference to `_NSGetEnviron'
+/tmp/ccu70YkR.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:58: undefined reference to `_NSGetEnviron'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -596,8 +596,8 @@ configure:6285: $? = 0
 configure:6285: result: yes
 configure:6285: checking for issetugid
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
-/tmp/cccq5aYG.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:69: undefined reference to `issetugid'
+/tmp/ccj6XnAh.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:69: undefined reference to `issetugid'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -677,8 +677,8 @@ configure:6285: result: no
 configure:6285: checking for llround
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
 conftest.c:58:6: warning: conflicting types for built-in function 'llround' [enabled by default]
-/tmp/ccuslEXu.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:69: undefined reference to `llround'
+/tmp/ccGky6UN.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:69: undefined reference to `llround'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -762,8 +762,8 @@ configure:6285: result: yes
 configure:6285: checking for lround
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
 conftest.c:59:6: warning: conflicting types for built-in function 'lround' [enabled by default]
-/tmp/ccWpTJM4.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:70: undefined reference to `lround'
+/tmp/ccMZrjJU.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:70: undefined reference to `lround'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -852,8 +852,8 @@ configure:6285: result: yes
 configure:6285: checking for rint
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
 conftest.c:61:6: warning: conflicting types for built-in function 'rint' [enabled by default]
-/tmp/ccXQx0e9.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:72: undefined reference to `rint'
+/tmp/cc6L45Hy.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:72: undefined reference to `rint'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -939,8 +939,8 @@ configure:6285: $? = 0
 configure:6285: result: yes
 configure:6285: checking for strlcat
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
-/tmp/ccKQz6M0.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:73: undefined reference to `strlcat'
+/tmp/ccqay4YD.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:73: undefined reference to `strlcat'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -1023,8 +1023,8 @@ configure: failed program was:
 configure:6285: result: no
 configure:6285: checking for strlcpy
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
-/tmp/ccK9wHuu.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:73: undefined reference to `strlcpy'
+/tmp/ccR67419.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:73: undefined reference to `strlcpy'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -1131,8 +1131,8 @@ configure:6285: $? = 0
 configure:6285: result: yes
 configure:6285: checking for _vscprintf
 configure:6285: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
-/tmp/ccUu3r3F.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:79: undefined reference to `_vscprintf'
+/tmp/ccetioSW.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:79: undefined reference to `_vscprintf'
 collect2: ld returned 1 exit status
 configure:6285: $? = 1
 configure: failed program was:
@@ -1653,8 +1653,8 @@ configure:6745: $? = 0
 configure:6745: result: yes
 configure:6745: checking for evdns_set_outgoing_bind_address
 configure:6745: gcc -o conftest -g -O2   -I${top_srcdir}/src/common   conftest.c -levent   -lrt -ldl  >&5
-/tmp/ccgSviAJ.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:86: undefined reference to `evdns_set_outgoing_bind_address'
+/tmp/ccq5Jkqn.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:86: undefined reference to `evdns_set_outgoing_bind_address'
 collect2: ld returned 1 exit status
 configure:6745: $? = 1
 configure: failed program was:
@@ -1925,8 +1925,8 @@ configure:6770: result: yes
 configure:6893: checking for library containing pow
 configure:6924: gcc -o conftest -g -O2  -I${top_srcdir}/src/common  conftest.c -lrt -ldl  >&5
 conftest.c:63:6: warning: conflicting types for built-in function 'pow' [enabled by default]
-/tmp/ccGQnKwd.o: In function `main':
-/home/pi/tor-0.2.4.22/build/conftest.c:67: undefined reference to `pow'
+/tmp/ccgs8Fdr.o: In function `main':
+/home/pi/tor-build-arm/tor-0.2.4.22/build/conftest.c:67: undefined reference to `pow'
 collect2: ld returned 1 exit status
 configure:6924: $? = 1
 configure: failed program was:
@@ -7925,7 +7925,7 @@ tor_cv_twos_complement=yes
 ## ----------------- ##
 
 A2X='/usr/bin/a2x'
-ACLOCAL='${SHELL} /home/pi/tor-0.2.4.22/missing aclocal-1.14'
+ACLOCAL='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/missing aclocal-1.14'
 AMDEPBACKSLASH=''
 AMDEP_FALSE=''
 AMDEP_TRUE='#'
@@ -7936,12 +7936,12 @@ AM_DEFAULT_VERBOSITY='1'
 AM_V='$(V)'
 AR='ar'
 ASCIIDOC='/usr/bin/asciidoc'
-AUTOCONF='${SHELL} /home/pi/tor-0.2.4.22/missing autoconf'
-AUTOHEADER='${SHELL} /home/pi/tor-0.2.4.22/missing autoheader'
-AUTOMAKE='${SHELL} /home/pi/tor-0.2.4.22/missing automake-1.14'
+AUTOCONF='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/missing autoconf'
+AUTOHEADER='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/missing autoheader'
+AUTOMAKE='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/missing automake-1.14'
 AWK='mawk'
 BINDIR='/usr/bin'
-BUILDDIR='/home/pi/tor-0.2.4.22/build'
+BUILDDIR='/home/pi/tor-build-arm/tor-0.2.4.22/build'
 BUILD_CURVE25519_DONNA_C64_FALSE=''
 BUILD_CURVE25519_DONNA_C64_TRUE='#'
 BUILD_CURVE25519_DONNA_FALSE='#'
@@ -7976,7 +7976,7 @@ LIBS='-lrt -ldl '
 LOCALSTATEDIR='/var'
 LOGFACILITY=''
 LTLIBOBJS=''
-MAKEINFO='${SHELL} /home/pi/tor-0.2.4.22/missing makeinfo'
+MAKEINFO='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/missing makeinfo'
 MINIUPNPC_FALSE=''
 MINIUPNPC_TRUE='#'
 MKDIR_P='/bin/mkdir -p'
@@ -8059,7 +8059,7 @@ host_vendor='unknown'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${prefix}/share/info'
-install_sh='${SHELL} /home/pi/tor-0.2.4.22/install-sh'
+install_sh='${SHELL} /home/pi/tor-build-arm/tor-0.2.4.22/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${prefix}/lib/tor'
 localedir='${datarootdir}/locale'
@@ -8225,7 +8225,7 @@ target_alias=''
 #define HAVE_MACRO__func__ 1
 #define HAVE_MACRO__FUNCTION__ 1
 #define HAVE_EXTERN_ENVIRON_DECLARED 1
-#define BUILDDIR "/home/pi/tor-0.2.4.22/build"
+#define BUILDDIR "/home/pi/tor-build-arm/tor-0.2.4.22/build"
 #define CONFDIR "/etc/tor"
 
 configure: exit 0

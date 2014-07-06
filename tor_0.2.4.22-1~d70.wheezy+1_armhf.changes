@@ -1,0 +1,36 @@
+Format: 1.8
+Date: Sat, 17 May 2014 09:05:35 +0000
+Source: tor
+Binary: tor tor-dbg tor-geoipdb
+Architecture: source armhf all
+Version: 0.2.4.22-1~d70.wheezy+1
+Distribution: wheezy-backport
+Urgency: low
+Maintainer: Peter Palfrader <weasel@debian.org>
+Changed-By: jenkins role account <jenkins@dixie.torproject.org>
+Description: 
+ tor        - anonymizing overlay network for TCP
+ tor-dbg    - debugging symbols for Tor
+ tor-geoipdb - GeoIP database for Tor
+Changes: 
+ tor (0.2.4.22-1~d70.wheezy+1) wheezy-backport; urgency=low
+ .
+   * Build for wheezy-backport.
+Checksums-Sha1: 
+ 4d4478cc4aa8eb9947f7bc6de4285a4f44fb3ab4 1207 tor_0.2.4.22-1~d70.wheezy+1.dsc
+ e3dc4cbd007b348e9af8a2cb06777f901f73834a 34393 tor_0.2.4.22-1~d70.wheezy+1.diff.gz
+ 988d06013758b3812629491a22b427009126fad7 1321874 tor_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ dc20e2b00518fbb6b90acd3056dc8826cd94875c 1639898 tor-dbg_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ 5692a3c1f252946135a87c0844cf430deecbc690 1004086 tor-geoipdb_0.2.4.22-1~d70.wheezy+1_all.deb
+Checksums-Sha256: 
+ 0ba61e1b5889b313e6b6e10e11022103990fdeaff36c2f088c1859edb85777d0 1207 tor_0.2.4.22-1~d70.wheezy+1.dsc
+ 176220f47a763db94156712f13b8947d54918bbf99f29a98969810bbdff46cd4 34393 tor_0.2.4.22-1~d70.wheezy+1.diff.gz
+ 367af6960e10a6c93fe310bf066d89139089cf5cedf32a37f761d40c122fad56 1321874 tor_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ a1d658e49291afbdfd3afa0bbac6569ffb8d24edc9001b8ab313a2449d230072 1639898 tor-dbg_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ a67fe17f32e758612fb78e86f64e78dd61b9ff40c19cca0fc497313ccc32b640 1004086 tor-geoipdb_0.2.4.22-1~d70.wheezy+1_all.deb
+Files: 
+ 3b9b56c1d9321f419e9f9b479671015d 1207 net optional tor_0.2.4.22-1~d70.wheezy+1.dsc
+ cf51c0fce88a5c71c11b89e7bd5524b4 34393 net optional tor_0.2.4.22-1~d70.wheezy+1.diff.gz
+ 10821a006763565a0e84fe7716b8b11e 1321874 net optional tor_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ 51de09fe01b3bc3c9c2e35e857b0b66c 1639898 debug extra tor-dbg_0.2.4.22-1~d70.wheezy+1_armhf.deb
+ a9a7fb378cfc76107b47bac89896dda0 1004086 net extra tor-geoipdb_0.2.4.22-1~d70.wheezy+1_all.deb

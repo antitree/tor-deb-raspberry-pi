@@ -1,0 +1,825 @@
+ dpkg-buildpackage -rfakeroot -D -us -uc
+dpkg-buildpackage: warning: using a gain-root-command while being root
+dpkg-buildpackage: source package tor
+dpkg-buildpackage: source version 0.2.4.22-1~d70.wheezy+1
+dpkg-buildpackage: source changed by jenkins role account <jenkins@dixie.torproject.org>
+ dpkg-source --before-build tor-0.2.4.22
+dpkg-buildpackage: host architecture armhf
+ fakeroot debian/rules clean
+dh \
+		clean \
+		--with quilt \
+		--builddirectory=build \
+		--parallel
+   dh_testdir -O--builddirectory=build -O--parallel
+   dh_auto_clean -O--builddirectory=build -O--parallel
+   dh_quilt_unpatch -O--builddirectory=build -O--parallel
+Removing patch improve-geoip-warning
+Restoring src/or/geoip.c
+
+No patches applied
+   debian/rules override_dh_clean
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+! [ -e debian/micro-revision.i ] || rm -f src/or/micro-revision.i
+# Normally the .deb wouldn't ship with a ../.git, but if we do, include the revision number
+if [ -d .git ] && which git >/dev/null; then \
+		echo "\"`git rev-parse --short=16 HEAD`\"" > "debian/micro-revision.i" ; \
+	fi
+# these get autobuilt from the .txt files, some of which we also patch
+rm -vf doc/*.in
+removed `doc/tor-gencert.1.in'
+removed `doc/tor-gencert.html.in'
+removed `doc/tor-resolve.1.in'
+removed `doc/tor-resolve.html.in'
+removed `doc/tor.1.in'
+removed `doc/tor.html.in'
+removed `doc/torify.1.in'
+removed `doc/torify.html.in'
+dh_clean
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+ dpkg-source -b tor-0.2.4.22
+dpkg-source: warning: no source format specified in debian/source/format, see dpkg-source(1)
+dpkg-source: info: using source format `1.0'
+dpkg-source: info: building tor using existing tor_0.2.4.22.orig.tar.gz
+dpkg-source: info: building tor in tor_0.2.4.22-1~d70.wheezy+1.diff.gz
+dpkg-source: warning: ignoring deletion of file doc/torify.html.in
+dpkg-source: warning: ignoring deletion of file doc/tor-gencert.html.in
+dpkg-source: warning: ignoring deletion of file doc/tor-resolve.html.in
+dpkg-source: warning: ignoring deletion of file doc/tor.1.in
+dpkg-source: warning: ignoring deletion of file doc/tor-resolve.1.in
+dpkg-source: warning: ignoring deletion of file doc/torify.1.in
+dpkg-source: warning: ignoring deletion of file doc/tor-gencert.1.in
+dpkg-source: warning: ignoring deletion of file doc/tor-fw-helper.html.in
+dpkg-source: warning: ignoring deletion of file doc/tor-fw-helper.1.in
+dpkg-source: warning: ignoring deletion of file doc/tor.html.in
+dpkg-source: info: building tor in tor_0.2.4.22-1~d70.wheezy+1.dsc
+ debian/rules build
+dh \
+		build \
+		--with quilt \
+		--builddirectory=build \
+		--parallel
+   dh_testdir -O--builddirectory=build -O--parallel
+   dh_quilt_patch -O--builddirectory=build -O--parallel
+Applying patch improve-geoip-warning
+patching file src/or/geoip.c
+
+Now at patch improve-geoip-warning
+   debian/rules override_dh_auto_configure
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+! [ -e debian/micro-revision.i ] || cp debian/micro-revision.i src/or/micro-revision.i
+dh_auto_configure -- \
+		 \
+		--prefix=/usr \
+		--mandir=\${prefix}/share/man \
+		--infodir=\${prefix}/share/info \
+		--localstatedir=/var \
+		--sysconfdir=/etc \
+		--disable-silent-rules
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking build system type... arm-unknown-linux-gnueabihf
+checking host system type... arm-unknown-linux-gnueabihf
+checking for ar... ar
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking whether make sets $(MAKE)... (cached) yes
+checking for ranlib... ranlib
+checking for sed... sed
+checking for asciidoc... /usr/bin/asciidoc
+checking for a2x... /usr/bin/a2x
+checking for flexible array members... yes
+checking for sha1sum... /usr/bin/sha1sum
+checking for openssl... /usr/bin/openssl
+checking for win32... no
+checking for MIPSpro compiler... no
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking for library containing socket... none required
+checking for library containing gethostbyname... none required
+checking for library containing dlopen... -ldl
+checking for library containing inet_aton... none required
+checking for library containing clock_gettime... -lrt
+checking for library containing pthread_create... none required
+checking for library containing pthread_detach... none required
+checking for _NSGetEnviron... no
+checking for accept4... yes
+checking for clock_gettime... yes
+checking for flock... yes
+checking for ftime... yes
+checking for getaddrinfo... yes
+checking for getifaddrs... yes
+checking for getrlimit... yes
+checking for gettimeofday... yes
+checking for gmtime_r... yes
+checking for inet_aton... yes
+checking for ioctl... yes
+checking for issetugid... no
+checking for llround... no
+checking for localtime_r... yes
+checking for lround... no
+checking for memmem... yes
+checking for prctl... yes
+checking for rint... no
+checking for socketpair... yes
+checking for strlcat... no
+checking for strlcpy... no
+checking for strptime... yes
+checking for strtok_r... yes
+checking for strtoull... yes
+checking for sysconf... yes
+checking for uname... yes
+checking for vasprintf... yes
+checking for _vscprintf... no
+checking pthread.h usability... yes
+checking pthread.h presence... yes
+checking for pthread.h... yes
+checking for pthread_create... yes
+checking for sys/types.h... (cached) yes
+checking for u_int64_t... yes
+checking for u_int32_t... yes
+checking for u_int16_t... yes
+checking for u_int8_t... yes
+checking for libevent directory... (system)
+checking whether we need extra options to link libevent... (none)
+checking for event_get_version... yes
+checking for event_get_version_number... yes
+checking for event_get_method... yes
+checking for event_set_log_callback... yes
+checking for evdns_set_outgoing_bind_address... no
+checking for event_base_loopexit... yes
+checking for struct event.min_heap_idx... no
+checking event2/event.h usability... yes
+checking event2/event.h presence... yes
+checking for event2/event.h... yes
+checking event2/dns.h usability... yes
+checking event2/dns.h presence... yes
+checking for event2/dns.h... yes
+checking event2/bufferevent_ssl.h usability... yes
+checking event2/bufferevent_ssl.h presence... yes
+checking for event2/bufferevent_ssl.h... yes
+checking for library containing pow... -lm
+checking for openssl directory... (system)
+checking whether we need extra options to link openssl... (none)
+checking for zlib directory... (system)
+checking whether we need extra options to link zlib... (none)
+checking whether the compiler accepts -fstack-protector-all... yes
+checking whether the compiler accepts -Wstack-protector... yes
+checking whether the compiler accepts -fwrapv... yes
+checking whether the compiler accepts --param ssp-buffer-size=1... yes
+checking whether the compiler accepts -fPIE... yes
+checking whether the linker accepts -pie... yes
+checking whether the linker accepts -z relro -z now... yes
+checking whether we can use curve25519-donna-c64... no
+checking crypto_scalarmult_curve25519.h usability... no
+checking crypto_scalarmult_curve25519.h presence... no
+checking for crypto_scalarmult_curve25519.h... no
+checking nacl/crypto_scalarmult_curve25519.h usability... no
+checking nacl/crypto_scalarmult_curve25519.h presence... no
+checking for nacl/crypto_scalarmult_curve25519.h... no
+checking for nacl compiled with a fast curve25519 implementation... no
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... 64
+checking assert.h usability... yes
+checking assert.h presence... yes
+checking for assert.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking signal.h usability... yes
+checking signal.h presence... yes
+checking for signal.h... yes
+checking for string.h... (cached) yes
+checking sys/fcntl.h usability... yes
+checking sys/fcntl.h presence... yes
+checking for sys/fcntl.h... yes
+checking for sys/stat.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking time.h usability... yes
+checking time.h presence... yes
+checking for time.h... yes
+checking for unistd.h... (cached) yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking crt_externs.h usability... no
+checking crt_externs.h presence... no
+checking for crt_externs.h... no
+checking grp.h usability... yes
+checking grp.h presence... yes
+checking for grp.h... yes
+checking ifaddrs.h usability... yes
+checking ifaddrs.h presence... yes
+checking for ifaddrs.h... yes
+checking for inttypes.h... (cached) yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking linux/types.h usability... yes
+checking linux/types.h presence... yes
+checking for linux/types.h... yes
+checking machine/limits.h usability... no
+checking machine/limits.h presence... no
+checking for machine/limits.h... no
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking malloc/malloc.h usability... no
+checking malloc/malloc.h presence... no
+checking for malloc/malloc.h... no
+checking malloc_np.h usability... no
+checking malloc_np.h presence... no
+checking for malloc_np.h... no
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking netinet/in6.h usability... no
+checking netinet/in6.h presence... no
+checking for netinet/in6.h... no
+checking pwd.h usability... yes
+checking pwd.h presence... yes
+checking for pwd.h... yes
+checking for stdint.h... (cached) yes
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/limits.h usability... no
+checking sys/limits.h presence... no
+checking for sys/limits.h... no
+checking sys/mman.h usability... yes
+checking sys/mman.h presence... yes
+checking for sys/mman.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/prctl.h usability... yes
+checking sys/prctl.h presence... yes
+checking for sys/prctl.h... yes
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking sys/syslimits.h usability... no
+checking sys/syslimits.h presence... no
+checking for sys/syslimits.h... no
+checking for sys/time.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking sys/un.h usability... yes
+checking sys/un.h presence... yes
+checking for sys/un.h... yes
+checking sys/utime.h usability... no
+checking sys/utime.h presence... no
+checking for sys/utime.h... no
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking for sys/param.h... (cached) yes
+checking for net/if.h... yes
+checking for net/pfvar.h... no
+checking for linux/netfilter_ipv4.h... yes
+checking for struct timeval.tv_sec... yes
+checking size of int8_t... 1
+checking size of int16_t... 2
+checking size of int32_t... 4
+checking size of int64_t... 8
+checking size of uint8_t... 1
+checking size of uint16_t... 2
+checking size of uint32_t... 4
+checking size of uint64_t... 8
+checking size of intptr_t... 4
+checking size of uintptr_t... 4
+checking size of char... 1
+checking size of short... 2
+checking size of int... 4
+checking size of long... 4
+checking size of long long... 8
+checking size of __int64... 0
+checking size of void *... 4
+checking size of time_t... 4
+checking size of size_t... 4
+checking size of pid_t... 4
+checking for uint... yes
+checking for u_char... yes
+checking for ssize_t... yes
+checking for struct in6_addr... yes
+checking for struct sockaddr_in6... yes
+checking for sa_family_t... yes
+checking for struct in6_addr.s6_addr32... yes
+checking for struct in6_addr.s6_addr16... yes
+checking for struct sockaddr_in.sin_len... no
+checking for struct sockaddr_in6.sin6_len... no
+checking for rlim_t... yes
+checking whether time_t is signed... yes
+checking whether size_t is signed... no
+checking whether enum always is signed... no
+checking size of socklen_t... 4
+checking size of cell_t... 0
+checking whether memset(0) sets pointers to NULL... yes
+checking whether memset(0) sets doubles to 0.0... yes
+checking whether we can malloc(0) safely.... yes
+checking whether we are using 2s-complement arithmetic... yes
+checking whether right-shift on negative values does sign-extension... yes
+checking whether to use dmalloc (debug memory allocation library)... no
+checking for mallinfo... yes
+checking for mlockall... yes
+checking whether mlockall is declared... yes
+checking for getresuid... yes
+checking for getresgid... yes
+checking for gethostbyname_r... yes
+checking how many arguments gethostbyname_r() wants... 6
+checking whether the C compiler supports __func__... yes
+checking whether the C compiler supports __FUNC__... no
+checking whether the C compiler supports __FUNCTION__... yes
+checking whether we have extern char **environ already declared... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Doxyfile
+config.status: creating Makefile
+config.status: creating contrib/suse/tor.sh
+config.status: creating contrib/tor.logrotate
+config.status: creating contrib/tor.sh
+config.status: creating contrib/torctl
+config.status: creating contrib/torify
+config.status: creating src/config/torrc.sample
+config.status: creating orconfig.h
+config.status: executing depfiles commands
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+   dh_auto_build -O--builddirectory=build -O--parallel
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make  all-am
+make[2]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/address.o ../src/common/address.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/compat.o ../src/common/compat.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/container.o ../src/common/container.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/di_ops.o ../src/common/di_ops.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/log.o ../src/common/log.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/memarea.o ../src/common/memarea.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/mempool.o ../src/common/mempool.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/procmon.o ../src/common/procmon.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/util.o ../src/common/util.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/util_codedigest.o ../src/common/util_codedigest.c
+rm -f src/common/libor.a
+ar cru src/common/libor.a src/common/address.o src/common/compat.o src/common/container.o src/common/di_ops.o src/common/log.o src/common/memarea.o src/common/mempool.o src/common/procmon.o src/common/util.o src/common/util_codedigest.o  
+ranlib src/common/libor.a
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/aes.o ../src/common/aes.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/crypto.o ../src/common/crypto.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/crypto_format.o ../src/common/crypto_format.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/torgzip.o ../src/common/torgzip.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/tortls.o ../src/common/tortls.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/crypto_curve25519.o ../src/common/crypto_curve25519.c
+rm -f src/common/libor-crypto.a
+ar cru src/common/libor-crypto.a src/common/aes.o src/common/crypto.o src/common/crypto_format.o src/common/torgzip.o src/common/tortls.o src/common/crypto_curve25519.o 
+ranlib src/common/libor-crypto.a
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/common/compat_libevent.o ../src/common/compat_libevent.c
+rm -f src/common/libor-event.a
+ar cru src/common/libor-event.a src/common/compat_libevent.o 
+ranlib src/common/libor-event.a
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/ext/curve25519_donna/src_common_libcurve25519_donna_a-curve25519-donna.o `test -f 'src/ext/curve25519_donna/curve25519-donna.c' || echo '../'`src/ext/curve25519_donna/curve25519-donna.c
+rm -f src/common/libcurve25519_donna.a
+ar cru src/common/libcurve25519_donna.a src/ext/curve25519_donna/src_common_libcurve25519_donna_a-curve25519-donna.o 
+ranlib src/common/libcurve25519_donna.a
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/addressmap.o ../src/or/addressmap.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/buffers.o ../src/or/buffers.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/channel.o ../src/or/channel.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/channeltls.o ../src/or/channeltls.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuitbuild.o ../src/or/circuitbuild.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuitlist.o ../src/or/circuitlist.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuitmux.o ../src/or/circuitmux.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuitmux_ewma.o ../src/or/circuitmux_ewma.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuitstats.o ../src/or/circuitstats.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/circuituse.o ../src/or/circuituse.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/command.o ../src/or/command.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/config.o ../src/or/config.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/confparse.o ../src/or/confparse.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/connection.o ../src/or/connection.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/connection_edge.o ../src/or/connection_edge.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/connection_or.o ../src/or/connection_or.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/control.o ../src/or/control.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/cpuworker.o ../src/or/cpuworker.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/directory.o ../src/or/directory.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/dirserv.o ../src/or/dirserv.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/dirvote.o ../src/or/dirvote.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/dns.o ../src/or/dns.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/dnsserv.o ../src/or/dnsserv.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/fp_pair.o ../src/or/fp_pair.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/geoip.o ../src/or/geoip.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/entrynodes.o ../src/or/entrynodes.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/hibernate.o ../src/or/hibernate.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/main.o ../src/or/main.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/microdesc.o ../src/or/microdesc.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/networkstatus.o ../src/or/networkstatus.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/nodelist.o ../src/or/nodelist.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/onion.o ../src/or/onion.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/onion_fast.o ../src/or/onion_fast.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/onion_tap.o ../src/or/onion_tap.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/transports.o ../src/or/transports.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/policies.o ../src/or/policies.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/reasons.o ../src/or/reasons.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/relay.o ../src/or/relay.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/rendclient.o ../src/or/rendclient.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/rendcommon.o ../src/or/rendcommon.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/rendmid.o ../src/or/rendmid.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/rendservice.o ../src/or/rendservice.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/rephist.o ../src/or/rephist.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/replaycache.o ../src/or/replaycache.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/router.o ../src/or/router.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/routerlist.o ../src/or/routerlist.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/routerparse.o ../src/or/routerparse.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/routerset.o ../src/or/routerset.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/statefile.o ../src/or/statefile.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/status.o ../src/or/status.c
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/onion_ntor.o ../src/or/onion_ntor.c
+if test "/usr/bin/sha1sum" != none; then \
+	  (cd ".." && "/usr/bin/sha1sum" src/or/tor_main.c src/or/addressmap.c src/or/buffers.c src/or/channel.c src/or/channeltls.c src/or/circuitbuild.c src/or/circuitlist.c src/or/circuitmux.c src/or/circuitmux_ewma.c src/or/circuitstats.c src/or/circuituse.c src/or/command.c src/or/config.c src/or/confparse.c src/or/connection.c src/or/connection_edge.c src/or/connection_or.c src/or/control.c src/or/cpuworker.c src/or/directory.c src/or/dirserv.c src/or/dirvote.c src/or/dns.c src/or/dnsserv.c src/or/fp_pair.c src/or/geoip.c src/or/entrynodes.c src/or/hibernate.c src/or/main.c src/or/microdesc.c src/or/networkstatus.c src/or/nodelist.c src/or/onion.c src/or/onion_fast.c src/or/onion_tap.c src/or/transports.c src/or/policies.c src/or/reasons.c src/or/relay.c src/or/rendclient.c src/or/rendcommon.c src/or/rendmid.c src/or/rendservice.c src/or/rephist.c src/or/replaycache.c src/or/router.c src/or/routerlist.c src/or/routerparse.c src/or/routerset.c src/or/statefile.c src/or/status.c   src/or/onion_ntor.c src/or/config_codedigest.c src/or/addressmap.h src/or/buffers.h src/or/channel.h src/or/channeltls.h src/or/circuitbuild.h src/or/circuitlist.h src/or/circuitmux.h src/or/circuitmux_ewma.h src/or/circuitstats.h src/or/circuituse.h src/or/command.h src/or/config.h src/or/confparse.h src/or/connection.h src/or/connection_edge.h src/or/connection_or.h src/or/control.h src/or/cpuworker.h src/or/directory.h src/or/dirserv.h src/or/dirvote.h src/or/dns.h src/or/dnsserv.h src/or/eventdns_tor.h src/or/fp_pair.h src/or/geoip.h src/or/entrynodes.h src/or/hibernate.h src/or/main.h src/or/microdesc.h src/or/networkstatus.h src/or/nodelist.h src/or/ntmain.h src/or/onion.h src/or/onion_fast.h src/or/onion_ntor.h src/or/onion_tap.h src/or/or.h src/or/transports.h src/or/policies.h src/or/reasons.h src/or/relay.h src/or/rendclient.h src/or/rendcommon.h src/or/rendmid.h src/or/rendservice.h src/or/rephist.h src/or/replaycache.h src/or/router.h src/or/routerlist.h src/or/routerset.h src/or/routerparse.h src/or/statefile.h src/or/status.h ) | \
+	  "sed" -n 's/^\(.*\)$/"\1\\n"/p' > src/or/or_sha1.i; \
+	elif test "/usr/bin/openssl" != none; then \
+	  (cd ".." && "/usr/bin/openssl" sha1 src/or/tor_main.c src/or/addressmap.c src/or/buffers.c src/or/channel.c src/or/channeltls.c src/or/circuitbuild.c src/or/circuitlist.c src/or/circuitmux.c src/or/circuitmux_ewma.c src/or/circuitstats.c src/or/circuituse.c src/or/command.c src/or/config.c src/or/confparse.c src/or/connection.c src/or/connection_edge.c src/or/connection_or.c src/or/control.c src/or/cpuworker.c src/or/directory.c src/or/dirserv.c src/or/dirvote.c src/or/dns.c src/or/dnsserv.c src/or/fp_pair.c src/or/geoip.c src/or/entrynodes.c src/or/hibernate.c src/or/main.c src/or/microdesc.c src/or/networkstatus.c src/or/nodelist.c src/or/onion.c src/or/onion_fast.c src/or/onion_tap.c src/or/transports.c src/or/policies.c src/or/reasons.c src/or/relay.c src/or/rendclient.c src/or/rendcommon.c src/or/rendmid.c src/or/rendservice.c src/or/rephist.c src/or/replaycache.c src/or/router.c src/or/routerlist.c src/or/routerparse.c src/or/routerset.c src/or/statefile.c src/or/status.c   src/or/onion_ntor.c src/or/config_codedigest.c src/or/addressmap.h src/or/buffers.h src/or/channel.h src/or/channeltls.h src/or/circuitbuild.h src/or/circuitlist.h src/or/circuitmux.h src/or/circuitmux_ewma.h src/or/circuitstats.h src/or/circuituse.h src/or/command.h src/or/config.h src/or/confparse.h src/or/connection.h src/or/connection_edge.h src/or/connection_or.h src/or/control.h src/or/cpuworker.h src/or/directory.h src/or/dirserv.h src/or/dirvote.h src/or/dns.h src/or/dnsserv.h src/or/eventdns_tor.h src/or/fp_pair.h src/or/geoip.h src/or/entrynodes.h src/or/hibernate.h src/or/main.h src/or/microdesc.h src/or/networkstatus.h src/or/nodelist.h src/or/ntmain.h src/or/onion.h src/or/onion_fast.h src/or/onion_ntor.h src/or/onion_tap.h src/or/or.h src/or/transports.h src/or/policies.h src/or/reasons.h src/or/relay.h src/or/rendclient.h src/or/rendcommon.h src/or/rendmid.h src/or/rendservice.h src/or/rephist.h src/or/replaycache.h src/or/router.h src/or/routerlist.h src/or/routerset.h src/or/routerparse.h src/or/statefile.h src/or/status.h) | \
+	  "sed" -n 's/SHA1(\(.*\))= \(.*\)/"\2  \1\\n"/p' > src/or/or_sha1.i; \
+	else \
+	  rm src/or/or_sha1.i; \
+	  touch src/or/or_sha1.i; \
+	fi
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/config_codedigest.o ../src/or/config_codedigest.c
+rm -f src/or/libtor.a
+ar cru src/or/libtor.a src/or/addressmap.o src/or/buffers.o src/or/channel.o src/or/channeltls.o src/or/circuitbuild.o src/or/circuitlist.o src/or/circuitmux.o src/or/circuitmux_ewma.o src/or/circuitstats.o src/or/circuituse.o src/or/command.o src/or/config.o src/or/confparse.o src/or/connection.o src/or/connection_edge.o src/or/connection_or.o src/or/control.o src/or/cpuworker.o src/or/directory.o src/or/dirserv.o src/or/dirvote.o src/or/dns.o src/or/dnsserv.o src/or/fp_pair.o src/or/geoip.o src/or/entrynodes.o src/or/hibernate.o src/or/main.o src/or/microdesc.o src/or/networkstatus.o src/or/nodelist.o src/or/onion.o src/or/onion_fast.o src/or/onion_tap.o src/or/transports.o src/or/policies.o src/or/reasons.o src/or/relay.o src/or/rendclient.o src/or/rendcommon.o src/or/rendmid.o src/or/rendservice.o src/or/rephist.o src/or/replaycache.o src/or/router.o src/or/routerlist.o src/or/routerparse.o src/or/routerset.o src/or/statefile.o src/or/status.o   src/or/onion_ntor.o src/or/config_codedigest.o 
+ranlib src/or/libtor.a
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/or/tor_main.o ../src/or/tor_main.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/or/tor src/or/tor_main.o src/or/libtor.a src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a src/common/libor-event.a -lz -lm -levent -lssl -lcrypto  -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/tools/tor-resolve.o ../src/tools/tor-resolve.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/tools/tor-resolve src/tools/tor-resolve.o src/common/libor.a -lm  -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/tools/tor-gencert.o ../src/tools/tor-gencert.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/tools/tor-gencert src/tools/tor-gencert.o src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a -lm -lz -lssl -lcrypto  -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test.o `test -f 'src/test/test.c' || echo '../'`src/test/test.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_addr.o `test -f 'src/test/test_addr.c' || echo '../'`src/test/test_addr.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_cell_formats.o `test -f 'src/test/test_cell_formats.c' || echo '../'`src/test/test_cell_formats.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_containers.o `test -f 'src/test/test_containers.c' || echo '../'`src/test/test_containers.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_crypto.o `test -f 'src/test/test_crypto.c' || echo '../'`src/test/test_crypto.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_data.o `test -f 'src/test/test_data.c' || echo '../'`src/test/test_data.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_dir.o `test -f 'src/test/test_dir.c' || echo '../'`src/test/test_dir.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_introduce.o `test -f 'src/test/test_introduce.c' || echo '../'`src/test/test_introduce.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_microdesc.o `test -f 'src/test/test_microdesc.c' || echo '../'`src/test/test_microdesc.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_pt.o `test -f 'src/test/test_pt.c' || echo '../'`src/test/test_pt.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_replay.o `test -f 'src/test/test_replay.c' || echo '../'`src/test/test_replay.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_util.o `test -f 'src/test/test_util.c' || echo '../'`src/test/test_util.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_test-test_config.o `test -f 'src/test/test_config.c' || echo '../'`src/test/test_config.c
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/ext/src_test_test-tinytest.o `test -f 'src/ext/tinytest.c' || echo '../'`src/ext/tinytest.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/test/test src/test/src_test_test-test.o src/test/src_test_test-test_addr.o src/test/src_test_test-test_cell_formats.o src/test/src_test_test-test_containers.o src/test/src_test_test-test_crypto.o src/test/src_test_test-test_data.o src/test/src_test_test-test_dir.o src/test/src_test_test-test_introduce.o src/test/src_test_test-test_microdesc.o src/test/src_test_test-test_pt.o src/test/src_test_test-test_replay.o src/test/src_test_test-test_util.o src/test/src_test_test-test_config.o src/ext/src_test_test-tinytest.o src/or/libtor.a src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a src/common/libor-event.a -lz -lm -levent -lssl -lcrypto    -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/test-child.o ../src/test/test-child.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/test/test-child src/test/test-child.o  -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I"../src/or" -I"../src/ext" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/src_test_bench-bench.o `test -f 'src/test/bench.c' || echo '../'`src/test/bench.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/test/bench src/test/src_test_bench-bench.o src/or/libtor.a src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a src/common/libor-event.a -lz -lm -levent -lssl -lcrypto    -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/test/test_ntor_cl.o ../src/test/test_ntor_cl.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/test/test-ntor-cl src/test/test_ntor_cl.o src/or/libtor.a src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a -lz -lm -lssl -lcrypto    -lrt -ldl 
+gcc -DHAVE_CONFIG_H -I. -I..  -I../src/ext -Isrc/ext -I../src/common -Isrc/common -I../src/or -Isrc/or -DSHARE_DATADIR="\"/usr/share\"" -DLOCALSTATEDIR="\"/var\"" -DBINDIR="\"/usr/bin\"" -I../src/common     -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing -c -o src/tools/tor-checkkey.o ../src/tools/tor-checkkey.c
+gcc  -g -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector -fwrapv --param ssp-buffer-size=1 -fPIE -Wall -fno-strict-aliasing  -pie -z relro -z now -o src/tools/tor-checkkey src/tools/tor-checkkey.o src/common/libor.a src/common/libor-crypto.a src/common/libcurve25519_donna.a -lm -lz -lssl -lcrypto  -lrt -ldl 
+../doc/asciidoc-helper.sh man /usr/bin/a2x ../doc/tor.1.in
+/bin/mkdir -p doc
+if test -e ../doc/tor.1.in && ! test -e doc/tor.1.in ; then \
+		cp ../doc/tor.1.in doc/tor.1; \
+	fi
+./config.status -q --file=doc/tor.1;
+../doc/asciidoc-helper.sh man /usr/bin/a2x ../doc/tor-gencert.1.in
+/bin/mkdir -p doc
+if test -e ../doc/tor-gencert.1.in && ! test -e doc/tor-gencert.1.in ; then \
+		cp ../doc/tor-gencert.1.in doc/tor-gencert.1; \
+	fi
+./config.status -q --file=doc/tor-gencert.1;
+../doc/asciidoc-helper.sh man /usr/bin/a2x ../doc/tor-resolve.1.in
+/bin/mkdir -p doc
+if test -e ../doc/tor-resolve.1.in && ! test -e doc/tor-resolve.1.in ; then \
+		cp ../doc/tor-resolve.1.in doc/tor-resolve.1; \
+	fi
+./config.status -q --file=doc/tor-resolve.1;
+../doc/asciidoc-helper.sh man /usr/bin/a2x ../doc/torify.1.in
+/bin/mkdir -p doc
+if test -e ../doc/torify.1.in && ! test -e doc/torify.1.in ; then \
+		cp ../doc/torify.1.in doc/torify.1; \
+	fi
+./config.status -q --file=doc/torify.1;
+../doc/asciidoc-helper.sh html /usr/bin/asciidoc ../doc/tor.html.in
+/bin/mkdir -p doc
+if test -e ../doc/tor.html.in && ! test -e doc/tor.html.in ; then \
+		cp ../doc/tor.html.in doc/tor.html; \
+	fi
+./config.status -q --file=doc/tor.html;
+../doc/asciidoc-helper.sh html /usr/bin/asciidoc ../doc/tor-gencert.html.in
+/bin/mkdir -p doc
+if test -e ../doc/tor-gencert.html.in && ! test -e doc/tor-gencert.html.in ; then \
+		cp ../doc/tor-gencert.html.in doc/tor-gencert.html; \
+	fi
+./config.status -q --file=doc/tor-gencert.html;
+../doc/asciidoc-helper.sh html /usr/bin/asciidoc ../doc/tor-resolve.html.in
+/bin/mkdir -p doc
+if test -e ../doc/tor-resolve.html.in && ! test -e doc/tor-resolve.html.in ; then \
+		cp ../doc/tor-resolve.html.in doc/tor-resolve.html; \
+	fi
+./config.status -q --file=doc/tor-resolve.html;
+../doc/asciidoc-helper.sh html /usr/bin/asciidoc ../doc/torify.html.in
+/bin/mkdir -p doc
+if test -e ../doc/torify.html.in && ! test -e doc/torify.html.in ; then \
+		cp ../doc/torify.html.in doc/torify.html; \
+	fi
+./config.status -q --file=doc/torify.html;
+make[2]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+   dh_auto_test -O--builddirectory=build -O--parallel
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make  all-am
+make[2]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make[2]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+./src/test/test
+buffers: OK
+buffer_copy: OK
+onion_handshake: OK
+onion_queues: OK
+ntor_handshake: OK
+circuit_timeout: OK
+policies: OK
+rend_fns: OK
+geoip: OK
+stats: [forking] OK
+socks/4_unsupported_commands: [forking] OK
+socks/4_supported_commands: [forking] OK
+socks/5_unsupported_commands: [forking] OK
+socks/5_supported_commands: [forking] OK
+socks/5_no_authenticate: [forking] OK
+socks/5_auth_before_negotiation: [forking] OK
+socks/5_authenticate: [forking] OK
+socks/5_authenticate_with_data: [forking] OK
+addr/basic: OK
+addr/ip6_helpers: OK
+addr/parse: OK
+addr/virtaddr: OK
+addr/is_loopback: OK
+crypto/formats: OK
+crypto/rng: OK
+crypto/aes_AES: [forking] OK
+crypto/aes_EVP: [forking] OK
+crypto/sha: OK
+crypto/pk: OK
+crypto/dh: OK
+crypto/s2k: OK
+crypto/aes_iv_AES: [forking] OK
+crypto/aes_iv_EVP: [forking] OK
+crypto/base32_decode: OK
+crypto/kdf_TAP: OK
+crypto/hkdf_sha256: OK
+crypto/curve25519_impl: OK
+crypto/curve25519_impl_hibit: OK
+crypto/curve25519_wrappers: OK
+crypto/curve25519_encode: OK
+crypto/curve25519_persist: OK
+container/smartlist_basic: OK
+container/smartlist_strings: OK
+container/smartlist_overlap: OK
+container/smartlist_digests: OK
+container/smartlist_join: OK
+container/bitarray: OK
+container/digestset: OK
+container/strmap: OK
+container/pqueue: OK
+container/order_functions: OK
+container/di_map: OK
+container/fp_pair_map: OK
+util/time: OK
+util/parse_http_time: OK
+util/config_line: OK
+util/config_line_quotes: OK
+util/config_line_comment_character: OK
+util/config_line_escaped_content: OK
+util/expand_filename: OK
+util/strmisc: OK
+util/pow2: OK
+util/gzip: OK
+util/datadir: OK
+util/mempool: OK
+util/memarea: OK
+util/control_formats: OK
+util/mmap: OK
+util/threads: OK
+util/sscanf: OK
+util/path_is_relative: OK
+util/strtok: OK
+util/di_ops: OK
+util/find_str_at_start_of_line: OK
+util/string_is_C_identifier: OK
+util/asprintf: OK
+util/listdir: OK
+util/parent_dir: OK
+util/exit_status: OK
+util/fgets_eagain: SKIPPED
+util/spawn_background_ok: OK
+util/spawn_background_fail: OK
+util/spawn_background_partial_read: OK
+util/format_hex_number: OK
+util/join_win_cmdline: OK
+util/split_lines: OK
+util/n_bits_set: OK
+util/eat_whitespace: OK
+util/sl_new_from_text_lines: OK
+util/envnames: OK
+util/make_environment: OK
+util/set_env_var_in_sl: OK
+util/read_file_eof_tiny_limit: OK
+util/read_file_eof_two_loops: OK
+util/read_file_eof_zero_bytes: OK
+util/mathlog: OK
+util/weak_random: OK
+cellfmt/relay_header: OK
+cellfmt/begin_cells: OK
+cellfmt/connected_cells: OK
+cellfmt/create_cells: OK
+cellfmt/created_cells: OK
+cellfmt/extend_cells: OK
+cellfmt/extended_cells: OK
+dir/nicknames: [forking] OK
+dir/formats: [forking] OK
+dir/versions: [forking] OK
+dir/fp_pairs: [forking] OK
+dir/split_fps: OK
+dir/measured_bw_kb: [forking] OK
+dir/measured_bw_kb_cache: [forking] OK
+dir/param_voting: [forking] OK
+dir/v3_networkstatus: [forking] OK
+dir/random_weighted: OK
+dir/scale_bw: OK
+dir/clip_unmeasured_bw_kb: [forking] OK
+dir/clip_unmeasured_bw_kb_alt: [forking] OK
+dir/v2_dir: [forking] OK
+dir/fmt_control_ns: OK
+dir/md/cache: [forking] OK
+dir/md/broken_cache: [forking] OK
+pt/parsing: OK
+pt/protocol: OK
+config/addressmap: OK
+replaycache/alloc: OK
+replaycache/miss: OK
+replaycache/hit: OK
+replaycache/age: OK
+replaycache/elapsed: OK
+replaycache/noexpire: OK
+introduce/early_parse_v0: OK
+introduce/early_parse_v1: OK
+introduce/early_parse_v2: OK
+introduce/early_parse_v3: OK
+introduce/decrypt_v0: OK
+introduce/decrypt_v1: OK
+introduce/decrypt_v2: OK
+introduce/decrypt_v3: OK
+introduce/late_parse_v0: OK
+introduce/late_parse_v1: OK
+introduce/late_parse_v2: OK
+introduce/late_parse_v3: OK
+141 tests ok.  (1 skipped)
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+ fakeroot debian/rules binary
+dh \
+		binary \
+		--with quilt \
+		--builddirectory=build \
+		--parallel
+   dh_testroot -O--builddirectory=build -O--parallel
+   dh_prep -O--builddirectory=build -O--parallel
+   dh_installdirs -O--builddirectory=build -O--parallel
+   dh_auto_install -O--builddirectory=build -O--parallel
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make[2]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/bin'
+  /usr/bin/install -c src/or/tor src/tools/tor-resolve src/tools/tor-gencert '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/bin'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/bin'
+ /usr/bin/install -c contrib/torify '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/bin'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/etc/tor'
+ /usr/bin/install -c -m 644 src/config/torrc.sample '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/etc/tor'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/doc/tor'
+ /usr/bin/install -c -m 644 doc/tor.html doc/tor-gencert.html doc/tor-resolve.html doc/torify.html '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/doc/tor'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/man/man1'
+ /usr/bin/install -c -m 644 doc/tor.1 doc/tor-gencert.1 doc/tor-resolve.1 doc/torify.1 '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/man/man1'
+ /bin/mkdir -p '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/tor'
+ /usr/bin/install -c -m 644 ../src/config/geoip ../src/config/geoip6 '/home/pi/tor-build-arm/tor-0.2.4.22/debian/tmp/usr/share/tor'
+make[2]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22/build'
+   debian/rules override_dh_install
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+dh_install --fail-missing
+mv debian/tor/etc/tor/torrc.sample debian/tor/etc/tor/torrc
+cp debian/tor.apparmor-profile             debian/tor/etc/apparmor.d/system_tor
+cp debian/tor.apparmor-profile.abstraction debian/tor/etc/apparmor.d/abstractions/tor
+dh_apparmor --profile-name=system_tor -ptor
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+   debian/rules override_dh_installdocs
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+dh_installdocs -ptor-dbg --link-doc=tor
+dh_installdocs
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+   dh_installchangelogs -O--builddirectory=build -O--parallel
+   dh_installexamples -O--builddirectory=build -O--parallel
+   dh_installman -O--builddirectory=build -O--parallel
+   dh_installcatalogs -O--builddirectory=build -O--parallel
+   dh_installcron -O--builddirectory=build -O--parallel
+   dh_installdebconf -O--builddirectory=build -O--parallel
+   dh_installemacsen -O--builddirectory=build -O--parallel
+   dh_installifupdown -O--builddirectory=build -O--parallel
+   dh_installinfo -O--builddirectory=build -O--parallel
+   dh_pysupport -O--builddirectory=build -O--parallel
+dh_pysupport: This program is deprecated, you should use dh_python2 instead. Migration guide: http://deb.li/dhs2p
+   debian/rules override_dh_installinit
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+dh_installinit --error-handler=tor_error_init
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+   dh_installmenu -O--builddirectory=build -O--parallel
+   dh_installmime -O--builddirectory=build -O--parallel
+   dh_installmodules -O--builddirectory=build -O--parallel
+   dh_installlogcheck -O--builddirectory=build -O--parallel
+   dh_installlogrotate -O--builddirectory=build -O--parallel
+   dh_installpam -O--builddirectory=build -O--parallel
+   dh_installppp -O--builddirectory=build -O--parallel
+   dh_installudev -O--builddirectory=build -O--parallel
+   dh_installwm -O--builddirectory=build -O--parallel
+   dh_installxfonts -O--builddirectory=build -O--parallel
+   dh_installgsettings -O--builddirectory=build -O--parallel
+   dh_bugfiles -O--builddirectory=build -O--parallel
+   dh_ucf -O--builddirectory=build -O--parallel
+   dh_lintian -O--builddirectory=build -O--parallel
+   dh_gconf -O--builddirectory=build -O--parallel
+   dh_icons -O--builddirectory=build -O--parallel
+   dh_perl -O--builddirectory=build -O--parallel
+   dh_usrlocal -O--builddirectory=build -O--parallel
+   dh_link -O--builddirectory=build -O--parallel
+   dh_compress -O--builddirectory=build -O--parallel
+   dh_fixperms -O--builddirectory=build -O--parallel
+   debian/rules override_dh_strip
+make[1]: Entering directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+dh_strip --dbg-package=tor-dbg
+make[1]: Leaving directory `/home/pi/tor-build-arm/tor-0.2.4.22'
+   dh_makeshlibs -O--builddirectory=build -O--parallel
+   dh_shlibdeps -O--builddirectory=build -O--parallel
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/tor/usr/bin/tor debian/tor/usr/bin/tor-resolve debian/tor/usr/bin/tor-gencert were not linked against libdl.so.2 (they use none of the library's symbols)
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/tor/usr/bin/tor debian/tor/usr/bin/tor-resolve debian/tor/usr/bin/tor-gencert were not linked against librt.so.1 (they use none of the library's symbols)
+   dh_installdeb -O--builddirectory=build -O--parallel
+   dh_gencontrol -O--builddirectory=build -O--parallel
+   dh_md5sums -O--builddirectory=build -O--parallel
+   dh_builddeb -O--builddirectory=build -O--parallel
+dpkg-deb: building package `tor' in `../tor_0.2.4.22-1~d70.wheezy+1_armhf.deb'.
+dpkg-deb: building package `tor-dbg' in `../tor-dbg_0.2.4.22-1~d70.wheezy+1_armhf.deb'.
+dpkg-deb: building package `tor-geoipdb' in `../tor-geoipdb_0.2.4.22-1~d70.wheezy+1_all.deb'.
+ dpkg-genchanges  >../tor_0.2.4.22-1~d70.wheezy+1_armhf.changes
+dpkg-genchanges: warning: the current version (0.2.4.22-1~d70.wheezy+1) is earlier than the previous one (0.2.4.22-1)
+dpkg-genchanges: not including original source code in upload
+ dpkg-source --after-build tor-0.2.4.22
+dpkg-buildpackage: binary and diff upload (original source NOT included)
+Now running lintian...
+warning: the authors of lintian do not recommend running it with root privileges!
+E: tor changes: bad-distribution-in-changes-file wheezy-backport
+W: tor source: changelog-should-mention-nmu
+W: tor source: patch-system-but-no-source-readme
+Finished running lintian.

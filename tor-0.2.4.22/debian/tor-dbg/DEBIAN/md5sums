@@ -1,4 +1,4 @@
-78963b55229f4fed7154c275b1dd951d  usr/lib/debug/usr/bin/tor
-c214e24f9c067a226d63745b59de199b  usr/lib/debug/usr/bin/tor-gencert
-82caf4fb2e0546cd5db718930ddb8858  usr/lib/debug/usr/bin/tor-resolve
+0af0cb0f4b986456dedc54d08dc18bf1  usr/lib/debug/usr/bin/tor
+4e29ae0baa78029b70105903ad5d953e  usr/lib/debug/usr/bin/tor-gencert
+43fb69fdfa447d7772f32c94e1781b57  usr/lib/debug/usr/bin/tor-resolve
 8655fc5fd9a324387a687a87cf1cf011  usr/share/lintian/overrides/tor-dbg

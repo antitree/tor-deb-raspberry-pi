@@ -1,0 +1,35 @@
+tor-arm (1.4.4.1-1) unstable; urgency=low
+ 
+  Besides normal bug fixing and some minor features, this release introduces
+   two mayor and interesting huge features:
+   - Control Socket support
+   - Control Port interpretor
+  . 
+  Having "Control Socket" enabled by default on Tor package lets us to 
+   turn to almost zero configuration required for arm users to run Tor
+  .
+  This means we are be able to speak, through a local Unix socket, with Tor
+   directly with no extra authentication required
+  .
+  Although this could appear to be frightening, basic POSIX permissions 
+   are still required to access this socket, which, except in the case 
+   you screw up your system, is fair enough
+  . 
+  To put things into perspective, most of all services on your system, even
+  the more sensible ones, have been secured this way over many decades, 
+  so don't get stressed out! :-)
+  .
+  In rlation to Control Port interpretor, this is a new page or standalone 
+  prompt that gives raw control port access with several usability 
+  improvements, between others:
+  .
+  - Tab completion
+  - History scrollback
+  - IRC-styled commands:
+    * /help option which provides usage information for all of the tor/interpretor commands and tor configuration options
+    * /info option for querying relay information via fingerprint, nickname, or IP address
+    * /find option which searches the backlog for the given regex
+    * /events option which displays any events that we've listened for
+    * /write option which dumps the interpretor backlog to a file
+
+ -- Ulises Vitulli <dererk@debian.org>  Wed, 05 Oct 2011 13:02:36 -0300
