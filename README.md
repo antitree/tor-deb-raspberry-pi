@@ -4,8 +4,8 @@ tor-build-arm
 This is a repo for Tor build for the arm architecture. It's designed to run on raspberry pi's or any arm chips. This is a more up-to-date version of Tor compared to the ones used by Debian
 
 ## Why? ##
- * Debian repos are notoriously out of date
- * The custom repos you normally use for Debian do not support Arm
+ * Debian(and Raspbian) repos are notoriously out of date
+ * The custom repos you normally use for Debian and Ubuntu do not support Arm
 
 So if you want a newer version of Tor, you have to compile it yourself including the build tools that you might not want to have on your including the build tools that you might not want to install (or setup a virtual environment). Or just use this pre-compiled version that was built off a Raspberry Pi. 
 
