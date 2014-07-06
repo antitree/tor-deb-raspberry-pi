@@ -24,5 +24,6 @@ Because Launchpad doesn't support arm architecture at this point.
 You shouldn't. Although I know I'm not messing with the source, you shouldn't trust a binary and if this is a concern of yours, you should build it from source yourself. 
 
 ## Future Versions ##
-[ ] build for experimental builds as well
-[ ] automate the build process
+ [ ] build for experimental builds as well
+ 
+ [ ] automate the build process
