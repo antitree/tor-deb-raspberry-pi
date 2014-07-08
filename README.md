@@ -17,6 +17,9 @@ This is a repo for Tor .deb packages built for the arm architecture and specific
 
 This is meant to be an up-to-date version of Tor .DEB package that can easily be installed on Raspbian or other Debian-based distros running on the Raspberry Pi. It is built on a Raspberry Pi Model B but should also work on A just fine. 
 
+For more background and detailed explanation:
+https://tor.stackexchange.com/questions/242/how-to-run-tor-on-raspbian-on-the-raspberry-pi
+
 ## Why not a PPA?##
 Because Launchpad doesn't support arm architecture at this point. 
 
