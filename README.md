@@ -1,4 +1,4 @@
-tor-raspberry-pi
+tor-deb-raspberry-pi
 =============
 
 This is a repo for Tor .deb packages built for the arm architecture and specifically for the Raspberry Pi. This is a more up-to-date version of Tor compared to the ones used by Debian and Raspbian. 
