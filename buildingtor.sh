@@ -36,6 +36,7 @@ debuild -rfakeroot -uc -us >> $MSGFILE
 echo Build complete >> $MSGFILE
 cd ..
 ls *.deb >> $MSGFILE
+## TODO find latest version and mve to latest.deb
 ## add mail alerts
 /usr/bin/mail -s "$SUBJECT" "$EMAIL" < $MSGFILE
 
