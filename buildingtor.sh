@@ -2,6 +2,13 @@
 # Tor source build script
 # Designed for the Raspberry Pi
 
+#Email alert messages
+EMAIL="antitree@gmail.com"
+SUBJECT="Tor ARM Build Status"
+MSGFILE="/tmp/torbuildmessage.msg"
+
+TORPATH="/home/pi/tor-build-arm" # path of the build directory for cron
+
 # add sources to list vi tor.list
 # install requirements apt-get install build-essential fakeroot devscripts
 # apt-get install deb.torproject.org-keyring
@@ -11,14 +18,25 @@
 # apt-get install build-essential fakeroot devscripts
 # apt-get build-dep tor
 # mkdir ~/debian-packages; cd ~/debian-packages
+
+cd $TORPATH
+
+echo Clearing old versions of Tor
+rm -rf ./tor-0.2.*
+echo Updating packages >>MSGFILE
+apt-get update
+
 echo Gathering latest Tor code
-apt-get source tor
+apt-get source tor >> $MSGFILE
 
 echo Building Tor environment
-cd tor-0.2.4.22/
-debuild -rfakeroot -uc -us
+cd tor-0.2.*
+debuild -rfakeroot -uc -us >> $MSGFILE
 
-echo Build complete
-## add mail alerts
+echo Build complete >> $MSGFILE
 cd ..
-ls *.deb
+ls *.deb >> $MSGFILE
+## add mail alerts
+/usr/bin/mail -s "$SUBJECT" "$EMAIL" < $MSGFILE
+
+git add ./tor_*.deb
