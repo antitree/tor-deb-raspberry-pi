@@ -1,7 +1,0 @@
-usr/bin
-usr/share/doc
-usr/share/man
-etc/tor
-
-build/contrib/torify usr/bin
-debian/tor-service-defaults-torrc usr/share/tor
