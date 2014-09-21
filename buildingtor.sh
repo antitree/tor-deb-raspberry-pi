@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Tor source build script
 # Designed for the Raspberry Pi
 
@@ -8,6 +8,12 @@ SUBJECT="Tor ARM Build Status"
 MSGFILE="/tmp/torbuildmessage.msg"
 
 TORPATH="/home/pi/tor-build-arm" # path of the build directory for cron
+
+## Check root
+if [[ $EUID -ne 0 ]]; then
+  echo Must be run as root
+  exit 1
+fi
 
 # add sources to list vi tor.list
 # install requirements apt-get install build-essential fakeroot devscripts
@@ -23,7 +29,7 @@ cd $TORPATH
 
 echo Clearing old versions of Tor
 rm -rf ./tor-0.2.*
-echo Updating packages >>MSGFILE
+echo Updating packages >> $MSGFILE
 apt-get update
 
 echo Gathering latest Tor code
@@ -37,7 +43,6 @@ echo Build complete >> $MSGFILE
 cd ..
 ls *.deb >> $MSGFILE
 ## TODO find latest version and mve to latest.deb
-## add mail alerts
 /usr/bin/mail -s "$SUBJECT" "$EMAIL" < $MSGFILE
 
 git add ./tor_*.deb
