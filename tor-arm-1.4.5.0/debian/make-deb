@@ -1,4 +1,0 @@
-#!/bin/sh
-debuild
-fakeroot debian/rules clean
-
