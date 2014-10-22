@@ -1,0 +1,37 @@
+Format: 1.8
+Date: Mon, 20 Oct 2014 19:05:07 +0000
+Source: tor
+Binary: tor tor-dbg tor-geoipdb
+Architecture: source armhf all
+Version: 0.2.5.9-rc-1~d70.wheezy+1
+Distribution: wheezy-backport
+Urgency: low
+Maintainer: Peter Palfrader <weasel@debian.org>
+Changed-By: jenkins role account <jenkins@burlewii.torproject.org>
+Description: 
+ tor        - anonymizing overlay network for TCP
+ tor-dbg    - debugging symbols for Tor
+ tor-geoipdb - GeoIP database for Tor
+Changes: 
+ tor (0.2.5.9-rc-1~d70.wheezy+1) wheezy-backport; urgency=low
+ .
+   * Build for wheezy-backport.
+   * Remove libseccomp-dev build dependency for backport.
+Checksums-Sha1: 
+ 676e74a2b8bf9cbee933329962029501d9d47f07 1252 tor_0.2.5.9-rc-1~d70.wheezy+1.dsc
+ dcb1cd3202756a3bcc9a3e07663db67495f6d364 34923 tor_0.2.5.9-rc-1~d70.wheezy+1.diff.gz
+ 67c09c48c0c1a69bf0c3c693d38e1014a47e6fca 1405848 tor_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ 87dcdd4c04be66f2b394340c670114fd27de12f5 1575528 tor-dbg_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ 733c85c11036c07b2a2ed7aaa912696aa5502356 1100158 tor-geoipdb_0.2.5.9-rc-1~d70.wheezy+1_all.deb
+Checksums-Sha256: 
+ eb17bf20a4ed9f31b62ed15135e3db28de889d69505a9fc348d9f85c720f5f60 1252 tor_0.2.5.9-rc-1~d70.wheezy+1.dsc
+ 427e6caf6f8f1ac6157e53087a98c52f4f16fbba18a4e468a81c15c044efb76e 34923 tor_0.2.5.9-rc-1~d70.wheezy+1.diff.gz
+ 874e8c103ae53bc0bb7e9ff2c6a8a94324cd37994930b888e933615e524f1865 1405848 tor_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ 82c55276a5ee99520c6fd9bf55ad6c210167a26ebea6b8cab58e9ba01bab8df7 1575528 tor-dbg_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ 6a826845efca182d519a01925e49893c226f70a798b7fb47ed8b64c89d313eb1 1100158 tor-geoipdb_0.2.5.9-rc-1~d70.wheezy+1_all.deb
+Files: 
+ db1812544995f0a8ca617c7ee921320b 1252 net optional tor_0.2.5.9-rc-1~d70.wheezy+1.dsc
+ eeefa05922359dc48b04e82ddb7cf0af 34923 net optional tor_0.2.5.9-rc-1~d70.wheezy+1.diff.gz
+ e720ae75c489681d36114bc375aab95b 1405848 net optional tor_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ b99ba1dc5aafe0d9f4eb28ed46b4874f 1575528 debug extra tor-dbg_0.2.5.9-rc-1~d70.wheezy+1_armhf.deb
+ 31a0f2122688bf7129212ad1662bb767 1100158 net extra tor-geoipdb_0.2.5.9-rc-1~d70.wheezy+1_all.deb
