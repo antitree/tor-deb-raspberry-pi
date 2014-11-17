@@ -24,7 +24,7 @@ class BuildTor:
         self.quiet = False
         self.start = self.timestamp()
         self.finish = None
-        self.logfile = "torbuild.log"
+        self.logfile = self.srcpath + "/torbuild.log"
         self.set_logging(self.logfile)
         os.chdir(self.srcpath)
 
@@ -100,6 +100,8 @@ class BuildTor:
         try:
             logging.debug("Executing command: %s", commands)
             exe = subprocess.Popen(commands, stdout=subprocess.PIPE)
+            out = "No output"
+            err = "No error"
             out, err = exe.communicate()
             if exe.returncode != 0:
                 logging.debug(
