@@ -19,8 +19,9 @@ class BuildTor:
         self.path = ""
         self.result = "Incomplete"
         self.update = "Incomplete"
-        self.force = True # Force an update even if it's already done
-        self.DEBUG = False # don't perform actions, just test
+        self.force = True  # Force an update even if it's already done
+        self.DEBUG = False  # don't perform actions, just test
+        self.ERROR = None  # build check variable
         self.quiet = False
         self.start = self.timestamp()
         self.finish = None
@@ -66,6 +67,7 @@ class BuildTor:
         logging.debug("Results of apt-get update command are: %s %s", out, err)
         if err is not None:
             logging.debug("Error executing apt-get. Are you in the sudoers file?")
+            self.ERROR = True
         else:
             logging.debug("Apt-get update command successful")
 
@@ -73,6 +75,7 @@ class BuildTor:
         out, err = self._execute(commands)
         if err is not None:
             logging.debug("Error updating source.")
+            self.ERROR = True
         else:
             logging.debug("Source update successful")
         ##TODO subprocess does not return this text.
@@ -86,7 +89,8 @@ class BuildTor:
         ''' Find the version of Tor based on the source directories '''
         dirs = glob.glob("tor-[0-9]*[0-9]")
         if len(dirs) != 1:
-            logging.debug("More than Tor source code directory found")
+            logging.debug("More than one Tor source code directory found")
+            self.ERROR = True
         else:
             path = dirs[0]
             version = path[4:]
@@ -115,6 +119,7 @@ class BuildTor:
                 return out, err
         except:
             print("Invalid command format: %s" % commands)
+            self.ERROR = True
 
     def mail_results(self):
         ''' Send an email with the results of the process '''
@@ -122,10 +127,17 @@ class BuildTor:
             "== Tor Builder Report ==\n"
             "Start time: %s\n"
             "End time: %s\n"
-            "Tor Version: %s "
+            "Tor Version: %s \n"
+            "Error Status: %s \n"
             "Result: %s \n"
             "========================"
-            % (self.start, self.finish, self.version, self.result)
+            % (
+                self.start,
+                self.finish,
+                self.version,
+                self.ERROR,
+                self.result
+            )
         )
         msg["From"] = self.mfrom
         msg["To"] = self.mto
@@ -133,11 +145,15 @@ class BuildTor:
 
 
         logging.debug("Sending mail from %s to %s, with a subject of %s", self.mfrom, self.mto, self.msubject)
-        p = subprocess.Popen(
-            ["/usr/sbin/sendmail", "-t"],
-            stdin=subprocess.PIPE
-        )
-        p.communicate(msg.as_string())
+        try:
+            p = subprocess.Popen(
+                ["/usr/sbin/sendmail", "-t"],
+                stdin=subprocess.PIPE
+            )
+            p.communicate(msg.as_string())
+        except:
+            logging.error("Error sending email")
+            self.ERROR = True
 
     def set_mail(self, mto, mfrom="root@localhost", msubject=None):
         ''' Configure who to send the reports to '''
@@ -225,20 +241,27 @@ def main():
         build.set_mail(args.to, args.frm)
     else:
         print("Email information mandatory. Use -t and -f")
+        sys.exit()
 
     try:
-        # find versions installed
-        build.find_version()
-        # cleanup
-        build.cleanup()
-        # update tor source
-        build.update_source()
-        # See if new versions were downloaded
-        build.find_version()
-        # build
-        if not build.DEBUG:
-            build.build()
-        # set end time
+        if not build.ERROR:
+            # find versions installed
+            build.find_version()
+        if not build.ERROR:
+            # cleanup
+            build.cleanup()
+            # update tor source
+        if not build.ERROR:
+            build.update_source()
+            # See if new versions were downloaded
+        if not build.ERROR:
+            build.find_version()
+        if not build.ERROR:
+            # build
+            if not build.DEBUG:
+                build.build()
+            # set end time
+            build.result = "Completed successfully"
     except:
         logging.exception("Build process failed!!!")
 
@@ -248,10 +271,10 @@ def main():
         logging.exception("Could not email results")
 
     # TODO move build deb to latest
-    # TODO push to git
-    build.git()
+    if not build.ERROR:
+        build.git()
     # TODO verify everything is correct
-    # TODO Timstamp finish
+    # Timstamp finish
     build.finish = build.timestamp
 
 if __name__ == '__main__':
