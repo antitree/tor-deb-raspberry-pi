@@ -23,6 +23,7 @@ class BuildTor:
         self.DEBUG = False  # don't perform actions, just test
         self.ERROR = None  # build check variable
         self.quiet = False
+        self.signkey = None
         self.start = self.timestamp()
         self.finish = None
         self.logfile = self.srcpath + "/torbuild.log"
@@ -207,7 +208,12 @@ class BuildTor:
         ##TODO execut command to build
         os.chdir(self.path)
 
-        commands = ["debuild", "-rfakeroot", "-uc", "-us"]
+        if self.signkey:
+            commands = ["debuild", "-rfakeroot", "-k%s" % self.signkey] # sign with key
+        else:
+            logging.warning("No signing key found. The package will not be signed")
+            commands = ["debuild", "-rfakeroot", "-uc", "-us"] # do not sign
+
         out, err = self._execute(commands)
 
         ##TODO search for errors or problems
