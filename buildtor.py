@@ -64,17 +64,17 @@ class BuildTor:
     def update_source(self):
         ''' Update the Tor source code '''
         commands = ['sudo', 'apt-get', 'update']
-        out, err = self._execute(commands)
+        out, err, rc = self._execute(commands)
         logging.debug("Results of apt-get update command are: %s %s", out, err)
-        if err is not None:
+        if rc is not 0:
             logging.debug("Error executing apt-get. Are you in the sudoers file?")
             self.ERROR = True
         else:
             logging.debug("Apt-get update command successful")
 
         commands = ['apt-get', 'source', 'tor']
-        out, err = self._execute(commands)
-        if err is not None:
+        out, err, rc = self._execute(commands)
+        if rc is not 0:
             logging.debug("Error updating source.")
             self.ERROR = True
         else:
@@ -113,16 +113,17 @@ class BuildTor:
             out = "No output"
             err = "No error"
             out, err = exe.communicate()
-            if exe.returncode != 0:
+            rc = subprocess.returncode
+            if rc != 0:
                 logging.debug(
                     "Error executing shell command: \n"
                     "Output\n%s\n"
                     "Errors:\n%s\n"
                     % (out, err)
                 )
-                return out, err
+                return out, err, rc
             else:
-                return out, err
+                return out, err, rc
         except:
             print("Invalid command format: %s" % commands)
             self.ERROR = True
@@ -189,18 +190,18 @@ class BuildTor:
         logging.debug("Copied %s to latest.deb", torfile)
         # git commit $version.deb
         gitcmds = ['git', 'add', torfile]
-        o, e = self._execute(gitcmds)
+        o, e, r = self._execute(gitcmds)
         if e:
             logging.debug("Error executing git add command")
         else:
             logging.debug("Added file to git")
         gitcmds = ['git', 'commit', '-am', "Autobuilding: " + torfile]
-        o, e = self._execute(gitcmds)
+        o, e, r = self._execute(gitcmds)
         if e:
             logging.debug("Error commiting files to git")
         if not self.DEBUG:
             gitcmds = ['git', 'push']
-            o, e = self._execute(gitcmds)
+            o, e, r = self._execute(gitcmds)
             if not e:
                 logging.debug("Git push completed successfully")
 
@@ -214,10 +215,10 @@ class BuildTor:
             logging.warning("No signing key found. The package will not be signed")
             commands = ["debuild", "-rfakeroot", "-uc", "-us"] # do not sign
 
-        out, err = self._execute(commands)
+        out, err, rc = self._execute(commands)
 
-        ##TODO search for errors or problems
-        if err is not None:
+        ##TODO check for actual confirmation that it was successful
+        if rc is not 0:
             self.result = "Failed"
             print(err)
             print(out)
