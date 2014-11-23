@@ -118,7 +118,7 @@ class BuildTor:
             if not err:
                 err = "No error"
 
-            rc = subprocess.returncode
+            rc = exe.returncode
             if rc != 0:
                 logging.debug(
                     "Error executing shell command: \n"
