@@ -90,13 +90,17 @@ class BuildTor:
         ''' Find the version of Tor based on the source directories '''
         dirs = glob.glob("tor-[0-9]*[0-9]")
         if len(dirs) == 0:
-            logging.debug("Could not find tor dir")
+            logging.debug("Could not find tor dir. Found: %s" % dirs)
             self.update_source()
             logging.debug("Re-downloaded source")
-            self.ERROR = False
+            if len(dirs) == 1:
+                path = dirs[0]
+                version = path[4:]
+            else:
+                self.ERROR = True
         elif len(dirs) > 1:
             logging.debug("More than one tor dir")
-            self.ERROR = Truecront
+            self.ERROR = True
         else:
             path = dirs[0]
             version = path[4:]
@@ -109,7 +113,7 @@ class BuildTor:
         ''' private function to execute os commands '''
         try:
             logging.debug("Executing command: %s", commands)
-            exe = subprocess.Popen(commands, stdout=subprocess.PIPE)
+            exe = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             out, err = exe.communicate()
             ## TODO this is a hack to get around the None cond
