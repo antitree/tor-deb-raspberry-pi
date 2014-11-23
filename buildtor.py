@@ -109,10 +109,15 @@ class BuildTor:
         ''' private function to execute os commands '''
         try:
             logging.debug("Executing command: %s", commands)
-            exe = subprocess.Popen(commands, stdout=subprocess.PIPE)
-            out = "No output"
-            err = "No error"
+            exe = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
             out, err = exe.communicate()
+            ## TODO this is a hack to get around the None cond
+            if not out:
+                out = "No output"
+            if not err:
+                err = "No error"
+
             rc = subprocess.returncode
             if rc != 0:
                 logging.debug(
