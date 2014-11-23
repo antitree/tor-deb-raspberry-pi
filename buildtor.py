@@ -88,8 +88,13 @@ class BuildTor:
     def find_version(self):
         ''' Find the version of Tor based on the source directories '''
         dirs = glob.glob("tor-[0-9]*[0-9]")
-        if len(dirs) != 1:
-            logging.debug("More than one Tor source code directory found")
+        if len(dirs) == 0:
+            logging.debug("Could not find tor dir")
+            self.update_source()
+            logging.debug("Re-downloaded source")
+            self.ERROR = False
+        elif len(dirs) > 1:
+            logging.debug("More than one tor dir")
             self.ERROR = True
         else:
             path = dirs[0]
