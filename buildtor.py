@@ -109,7 +109,7 @@ class BuildTor:
         ''' private function to execute os commands '''
         try:
             logging.debug("Executing command: %s", commands)
-            exe = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            exe = subprocess.Popen(commands, stdout=subprocess.PIPE)
 
             out, err = exe.communicate()
             ## TODO this is a hack to get around the None cond
@@ -213,6 +213,8 @@ class BuildTor:
     def build(self):
         ##TODO execut command to build
         os.chdir(self.path)
+
+        ##TODO add ./configure handling if this is a brand new system
 
         if self.signkey:
             commands = ["debuild", "-rfakeroot", "-k%s" % self.signkey] # sign with key
