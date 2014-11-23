@@ -239,9 +239,13 @@ def main():
     parser.add_argument('-f',
         dest='frm',
         help="Email address to send alerts from")
+    parser.add_argument('-k',
+        dest='sig',
+        help="Signing key for the deb package (optional)")
     # TODO: add quiet, force, and DEBUG options
 
     args = parser.parse_args()
+
     if not args.path:
         print("You need to supply path to the arm-tor-source directory")
         sys.exit()
@@ -251,6 +255,10 @@ def main():
     if not args.to and args.frm:
         print("Email information mandatory. Use -t and -f")
         sys.exit()
+
+    if args.sig:
+        print("Signing key set to %s" % args.sig)
+        build.signkey = args.sig
 
     try:
         if not build.ERROR:
