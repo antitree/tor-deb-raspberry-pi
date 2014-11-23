@@ -95,7 +95,7 @@ class BuildTor:
             self.ERROR = False
         elif len(dirs) > 1:
             logging.debug("More than one tor dir")
-            self.ERROR = True
+            self.ERROR = Truecront
         else:
             path = dirs[0]
             version = path[4:]
@@ -242,9 +242,7 @@ def main():
     else:
         build = BuildTor(args.path)
 
-    if args.to and args.frm:
-        build.set_mail(args.to, args.frm)
-    else:
+    if not args.to and args.frm:
         print("Email information mandatory. Use -t and -f")
         sys.exit()
 
@@ -271,6 +269,7 @@ def main():
         logging.exception("Build process failed!!!")
 
     try:   # email results
+        build.set_mail(args.to, args.frm)
         build.mail_results()
     except:
         logging.exception("Could not email results")
