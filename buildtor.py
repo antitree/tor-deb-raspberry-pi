@@ -238,6 +238,18 @@ class BuildTor:
             logging.debug(out)
         os.chdir(self.srcpath)
 
+        # dpkg-sig -k 0x6FD1635C --sign pi tor_0.2.5.10-1~d70.wheezy+1_armhf.deb
+        torfile = glob.glob("tor_"+self.version+"*armhf.deb")[0] # TODO do this gooder
+        commands = ["dpkg-sig","-k",self.signkey,"--sign", "buildbot", torfile]
+        out, err, rc = self._execute(commands)
+
+        if rc is not 0:
+            self.result = "Failed"
+            print(err)
+            print(out)
+        else:
+            self.result = "Success"
+            logging.debug(out)
 
 def main():
     # get command line arguments
