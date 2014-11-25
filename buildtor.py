@@ -238,6 +238,7 @@ class BuildTor:
             logging.debug(out)
         os.chdir(self.srcpath)
 
+    def sign(self):
         # dpkg-sig -k 0x6FD1635C --sign pi tor_0.2.5.10-1~d70.wheezy+1_armhf.deb
         torfile = glob.glob("tor_"+self.version+"*armhf.deb")[0] # TODO do this gooder
         commands = ["dpkg-sig","-k",self.signkey,"--sign", "buildbot", torfile]
@@ -250,6 +251,8 @@ class BuildTor:
         else:
             self.result = "Success"
             logging.debug(out)
+
+
 
 def main():
     # get command line arguments
@@ -301,10 +304,14 @@ def main():
             # build
             if not build.DEBUG:
                 build.build()
+                build.sign()
             # set end time
             build.result = "Completed successfully"
     except:
         logging.exception("Build process failed!!!")
+
+    # Timstamp finish
+    build.finish = build.timestamp
 
     try:   # email results
         build.set_mail(args.to, args.frm)
@@ -315,9 +322,7 @@ def main():
     # TODO move build deb to latest
     if not build.ERROR:
         build.git()
-    # TODO verify everything is correct
-    # Timstamp finish
-    build.finish = build.timestamp
+
 
 if __name__ == '__main__':
     main()
