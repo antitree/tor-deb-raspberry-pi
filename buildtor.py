@@ -311,7 +311,7 @@ def main():
         logging.exception("Build process failed!!!")
 
     # Timstamp finish
-    build.finish = build.timestamp
+    build.finish = build.timestamp()
 
     try:   # email results
         build.set_mail(args.to, args.frm)
