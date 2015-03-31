@@ -89,6 +89,7 @@ class BuildTor:
     def find_version(self):
         ''' Find the version of Tor based on the source directories '''
         dirs = glob.glob("tor-[0-9]*[0-9]")
+	logging.debug("Tor version found as: %s" % dirs)
         if len(dirs) == 0:
             logging.debug("Could not find tor dir. Found: %s" % dirs)
             self.update_source()
